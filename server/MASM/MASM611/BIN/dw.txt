@@ -1,0 +1,5 @@
+n outt.txt      
+r bx            
+m CS:100 200    
+w               
+q               
