@@ -107,26 +107,19 @@ app.post('/compile-asm',isAuthenticated, (req, res) => {
       }
       else{
         console.log("successfully compiled!");
-        exec('ld test.o -o test.exe',(er,stdo,stde)=>{
-          if(er)
-          {
-            console.log(er);
-          }
-          else{
-            exec('test.exe', (er1, stdo1, stde1)=>{
-              if(er1){
-                console.log(er1);
-              }
-              else{
-                console.log(stdo1);
-              }
-            })
+        const outputFilePath = path.join(__dirname, 'MASM/MASM611/BIN', 'outt.txt');
+        fs.readFile(outputFilePath, 'utf-8', (readerr, data)=>{
+          if(readerr){
+            console.error('Error reading output: ', readerr);
+            return res.status(500).send('Failed to read output.');
+          }else{
+            console.log(data);
+            res.send(`Compilation successful.\n\nOutput:\n${data}`);
           }
         })
-        
       }
 
-      res.send('Compilation successful. Output saved as test.o');
+      // res.send('Compilation successful. Output saved as test.o');
   });
 });
 

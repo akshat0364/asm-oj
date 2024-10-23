@@ -1,6 +1,6 @@
 @echo off
-masm a.asm;
-link a.obj;
-debug a.exe < dc.txt > outt.txt
+masm test.asm;
+link test.obj;
+debug test.exe < dc.txt > outt.txt
 exit
 

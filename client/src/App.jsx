@@ -78,9 +78,13 @@ function Home() {
         throw new Error(result);
       }
       toast.success(result, { id: toastID });
+      console.log(result);
+      
     } catch (error) {
       toast.error('Error: ' + error.message, { id: toastID });
     }
+
+
   };
 
   const handleUpload = (event) =>{
