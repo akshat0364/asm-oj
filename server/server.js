@@ -70,7 +70,7 @@ app.post('/save-asm',isAuthenticated, (req, res) => {
         return res.status(400).send('content is required');
     }
 
-    const filePath=path.join(__dirname, 'test.asm');
+    const filePath=path.join(__dirname, './MASM/MASM611/BIN', 'test.asm');
 
     fs.writeFile(filePath, content, (err) => {
         if(err){
@@ -93,13 +93,14 @@ app.post('/compile-asm',isAuthenticated, (req, res) => {
       return res.status(400).send('Content is required for compilation.');
   }
 
-  const filePath = path.join(__dirname, 'test.asm');
+  const filePath = path.join(__dirname, 'MASM/MASM611/BIN', 'test.asm');
 
   // Save ASM content to file
   fs.writeFileSync(filePath, content);
 
   // Run NASM compiler command
-  exec('nasm -f win32 test.asm -o test.o', (err, stdout, stderr) => {
+  const batchFilePath = path.join(__dirname, 'run_dosbox.bat');
+  exec(`"${batchFilePath}"`, (err, stdout, stderr) => {
       if (err) {
           console.error('Error compiling file:', stderr);
           return res.status(500).send('Compilation failed: ' + stderr);

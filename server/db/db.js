@@ -1,10 +1,10 @@
 const { Client } = require('pg');
 const {hashPassword} = require('../hash.js')
 const client = new Client({
-    user: 'arjit',
+    user: 'postgres',
     host: 'localhost',
     database: 'asm-oj',
-    password: 'pass123',
+    password: 'Anshbansal1.',
     port: 5432,
 });
 
